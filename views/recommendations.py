@@ -1,4 +1,4 @@
- """
+"""
 Personalized Recommendations View
 Student Performance Prediction and Analysis System
 Rule-based academic advisory engine based on evaluated student attributes,
@@ -24,20 +24,20 @@ def render_recommendations_view():
     pred_category = st.session_state.get("latest_pred_category")
     inputs = st.session_state.get("latest_pred_inputs")
     risk_tier = st.session_state.get("latest_risk_tier")
-    risk_color = st.session_state.get("latest_risk_color", "#3B82F6")
+    risk_color = st.session_state.get("latest_risk_color", "#2563EB")
 
     # Fallback to alternate session keys if needed
     if not pred_category and st.session_state.get("last_dt_prediction"):
         pred_category = st.session_state.last_dt_prediction.get("predicted_class")
         risk_tier = st.session_state.last_dt_prediction.get("risk_tier")
-        risk_color = st.session_state.last_dt_prediction.get("risk_color", "#3B82F6")
+        risk_color = st.session_state.last_dt_prediction.get("risk_color", "#2563EB")
         inputs = st.session_state.get("last_dt_inputs")
 
     if not pred_category or not inputs:
         st.markdown("""
-        <div class="standard-card" style="border-color: rgba(59, 130, 246, 0.4);">
-            <h3 style="color:#60A5FA; margin-top:0;">ℹ Prediction Required for Targeted Advisory</h3>
-            <p style="color:#CBD5E1; font-size:0.92rem; line-height:1.6;">
+        <div class="standard-card" style="border-color: rgba(37, 99, 235, 0.3);">
+            <h3 style="color:#2563EB; margin-top:0;">ℹ Prediction Required for Targeted Advisory</h3>
+            <p style="color:#475569; font-size:0.92rem; line-height:1.6;">
                 The academic recommendation engine personalizes strategies based on a student's specific
                 behavioral and academic inputs. Please navigate to <b>Performance Prediction</b>, enter the student
                 attributes, and calculate a prediction first.
@@ -53,13 +53,13 @@ def render_recommendations_view():
     <div class="standard-card" style="border-left: 4px solid {risk_color};">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
-                <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:#94A3B8; font-weight:700;">Student Evaluation Profile</span>
-                <div style="font-size:1.6rem; font-weight:800; color:#FFFFFF; margin-top:4px;">
+                <span style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:#64748B; font-weight:700;">Student Evaluation Profile</span>
+                <div style="font-size:1.6rem; font-weight:800; color:#1E293B; margin-top:4px;">
                     Predicted Standing: <span style="color:{risk_color};">{pred_category}</span>
                 </div>
             </div>
             <div style="text-align:right;">
-                <span style="background:{risk_color}22; color:{risk_color}; border:1px solid {risk_color}55; padding:6px 14px; border-radius:6px; font-weight:700; font-size:0.85rem;">
+                <span style="background:{risk_color}15; color:{risk_color}; border:1px solid {risk_color}40; padding:6px 14px; border-radius:6px; font-weight:700; font-size:0.85rem;">
                     ● {risk_tier}
                 </span>
             </div>
@@ -155,13 +155,13 @@ def render_recommendations_view():
     if critical_actions:
         for a in critical_actions:
             st.markdown(f"""
-            <div style="background:#0E1626; border-left:3px solid #EF4444; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
-                <div style="color:#EF4444; font-weight:700; font-size:0.92rem;">{a['title']}</div>
-                <div style="color:#CBD5E1; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
+            <div style="background:#FEF2F2; border-left:3px solid #DC2626; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
+                <div style="color:#DC2626; font-weight:700; font-size:0.92rem;">{a['title']}</div>
+                <div style="color:#475569; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
             </div>
             """, unsafe_allow_html=True)
     else:
-        st.markdown("<p style='color:#10B981; font-size:0.85rem;'>✓ No critical academic risk gates triggered.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#16A34A; font-size:0.85rem;'>✓ No critical academic risk gates triggered.</p>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="standard-card">', unsafe_allow_html=True)
@@ -169,9 +169,9 @@ def render_recommendations_view():
     if habit_actions:
         for a in habit_actions:
             st.markdown(f"""
-            <div style="background:#0E1626; border-left:3px solid #3B82F6; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
-                <div style="color:#93C5FD; font-weight:700; font-size:0.92rem;">{a['title']}</div>
-                <div style="color:#CBD5E1; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
+            <div style="background:#EFF6FF; border-left:3px solid #2563EB; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
+                <div style="color:#1D4ED8; font-weight:700; font-size:0.92rem;">{a['title']}</div>
+                <div style="color:#475569; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
             </div>
             """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -181,9 +181,9 @@ def render_recommendations_view():
         st.markdown("### 🌿 Cognitive Wellness & Rest Balance")
         for a in wellness_actions:
             st.markdown(f"""
-            <div style="background:#0E1626; border-left:3px solid #8B5CF6; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
-                <div style="color:#C4B5FD; font-weight:700; font-size:0.92rem;">{a['title']}</div>
-                <div style="color:#CBD5E1; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
+            <div style="background:#F5F3FF; border-left:3px solid #7C3AED; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:10px;">
+                <div style="color:#6D28D9; font-weight:700; font-size:0.92rem;">{a['title']}</div>
+                <div style="color:#475569; font-size:0.84rem; margin-top:4px; line-height:1.5;">{a['desc']}</div>
             </div>
             """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
@@ -195,17 +195,17 @@ def render_recommendations_view():
     <div class="standard-card">
         <h4 style="margin-top:0; font-size:1rem;">📅 Suggested Weekly Study Execution Blueprint</h4>
         <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin-top:10px;">
-            <div style="background:#0E1626; padding:12px; border-radius:8px; border:1px solid rgba(148,163,184,0.1);">
-                <b style="color:#93C5FD; font-size:0.85rem;">Phase 1: Week 1-2</b>
-                <p style="color:#94A3B8; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Attend 100% of lectures. Audit incomplete assignments and organize course notes.</p>
+            <div style="background:#EFF6FF; padding:12px; border-radius:8px; border:1px solid #DBEAFE;">
+                <b style="color:#1D4ED8; font-size:0.85rem;">Phase 1: Week 1-2</b>
+                <p style="color:#475569; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Attend 100% of lectures. Audit incomplete assignments and organize course notes.</p>
             </div>
-            <div style="background:#0E1626; padding:12px; border-radius:8px; border:1px solid rgba(148,163,184,0.1);">
-                <b style="color:#C4B5FD; font-size:0.85rem;">Phase 2: Week 3-4</b>
-                <p style="color:#94A3B8; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Establish fixed daily study routine of 5+ hours. Solve past exam papers under timed conditions.</p>
+            <div style="background:#F5F3FF; padding:12px; border-radius:8px; border:1px solid #EDE9FE;">
+                <b style="color:#6D28D9; font-size:0.85rem;">Phase 2: Week 3-4</b>
+                <p style="color:#475569; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Establish fixed daily study routine of 5+ hours. Solve past exam papers under timed conditions.</p>
             </div>
-            <div style="background:#0E1626; padding:12px; border-radius:8px; border:1px solid rgba(148,163,184,0.1);">
-                <b style="color:#6EE7B7; font-size:0.85rem;">Phase 3: Pre-Exam</b>
-                <p style="color:#94A3B8; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Target 7.5 hours of sleep. Conduct active recall review and avoid last-minute cramming.</p>
+            <div style="background:#F0FDF4; padding:12px; border-radius:8px; border:1px solid #DCFCE7;">
+                <b style="color:#16A34A; font-size:0.85rem;">Phase 3: Pre-Exam</b>
+                <p style="color:#475569; font-size:0.8rem; margin-top:4px; margin-bottom:0;">Target 7.5 hours of sleep. Conduct active recall review and avoid last-minute cramming.</p>
             </div>
         </div>
     </div>
