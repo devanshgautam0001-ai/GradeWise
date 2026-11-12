@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeStorm 2026 - Student Login Portal for Competitive DSA Challenge.">
+  <title>Student Login | CodeStorm 2026</title>
+  
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-page">
+  <!-- Accessible Skip to Content Link -->
+  <a href="#main-auth" class="skip-to-content">Skip to login form</a>
+
+  <main id="main-auth" class="auth-main">
+    <div class="auth-container">
+      <div class="auth-card auth-student-card">
+        <header class="auth-card-header">
+          <div class="auth-brand" aria-label="CodeStorm 2026">
+            <span class="brand-icon" aria-hidden="true">&lt;/&gt;</span>
+            <span class="auth-brand-name">CodeStorm <span>2026</span></span>
+          </div>
+          <h1 class="auth-title">Student Login</h1>
+          <p class="auth-subtitle">Enter your credentials to access the contest workspace</p>
+        </header>
+
+        <form id="student-login-form" class="auth-form" novalidate>
+          <div class="form-group" id="student-id-group">
+            <label for="student-id" class="form-label">Student ID</label>
+            <input 
+              type="text" 
+              id="student-id" 
+              name="studentId" 
+              class="form-input" 
+              placeholder="e.g. STU-2026-084" 
+              autocomplete="username" 
+              required
+              aria-required="true"
+            >
+            <span class="form-error-msg" id="student-id-error">Please enter your Student ID.</span>
+          </div>
+
+          <div class="form-group" id="student-password-group">
+            <label for="student-password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              id="student-password" 
+              name="password" 
+              class="form-input" 
+              placeholder="Enter your password" 
+              autocomplete="current-password" 
+              required
+              aria-required="true"
+            >
+            <span class="form-error-msg" id="student-password-error">Please enter your password.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="student-login-submit">
+            Login
+          </button>
+        </form>
+
+        <footer class="auth-card-footer">
+          <span style="font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">
+            Official Competitive Examination Portal
+          </span>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

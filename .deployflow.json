@@ -1,0 +1,49 @@
+{
+  "provider": "netlify",
+  "framework": "Static Site",
+  "packageManager": "none",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "environment": "production",
+  "siteId": "0294896a-6e38-4250-a7cc-40d6d8e21a8f",
+  "siteName": "ai-study-plannar",
+  "siteUrl": "https://ai-study-plannar.netlify.app",
+  "history": [
+    {
+      "id": "deploy_1786986397270",
+      "siteId": "0294896a-6e38-4250-a7cc-40d6d8e21a8f",
+      "siteName": "ai-study-plannar",
+      "deployId": "6a833f89ba99f1c843d51636",
+      "status": "success",
+      "url": "https://6a833f89ba99f1c843d51636--ai-study-plannar.netlify.app",
+      "timestamp": 1786986397270,
+      "environment": "production",
+      "durationMs": 4932,
+      "filesCount": 11,
+      "filesUploaded": 1
+    },
+    {
+      "id": "deploy_1786985773657",
+      "siteId": "0294896a-6e38-4250-a7cc-40d6d8e21a8f",
+      "siteName": "ai-study-plannar",
+      "deployId": "6a833d1450d23aaacde8f137",
+      "status": "success",
+      "url": "https://6a833d1450d23aaacde8f137--ai-study-plannar.netlify.app",
+      "timestamp": 1786985773657,
+      "environment": "production",
+      "durationMs": 24684,
+      "filesCount": 10525,
+      "filesUploaded": 31
+    },
+    {
+      "id": "deploy_1786985660464",
+      "siteId": "0294896a-6e38-4250-a7cc-40d6d8e21a8f",
+      "siteName": "ai-study-plannar",
+      "status": "failed",
+      "timestamp": 1786985660464,
+      "environment": "production",
+      "durationMs": 164651,
+      "errorMessage": "Network failure while connecting to Netlify: fetch failed"
+    }
+  ]
+}

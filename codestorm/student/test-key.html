@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeStorm 2026 - Enter Test Key for Contest Access.">
+  <title>Enter Test Key | CodeStorm 2026</title>
+  
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-page">
+  <!-- Accessible Skip to Content Link -->
+  <a href="#main-test-key" class="skip-to-content">Skip to test key input</a>
+
+  <main id="main-test-key" class="auth-main">
+    <div class="auth-container">
+      <div class="auth-card auth-student-card">
+        <header class="auth-card-header">
+          <div class="auth-brand" aria-label="CodeStorm 2026">
+            <span class="brand-icon" aria-hidden="true">&lt;/&gt;</span>
+            <span class="auth-brand-name">CodeStorm <span>2026</span></span>
+          </div>
+          <h1 class="auth-title">Enter Test Key</h1>
+          <p class="auth-subtitle">Enter the test key provided by the organizers.</p>
+        </header>
+
+        <form id="test-key-form" class="auth-form" novalidate>
+          <div class="form-group" id="test-key-group">
+            <label for="test-key-input" class="form-label">Test Key</label>
+            <input 
+              type="text" 
+              id="test-key-input" 
+              name="testKey" 
+              class="form-input" 
+              placeholder="e.g. CODESTORM26" 
+              autocomplete="off" 
+              spellcheck="false" 
+              required
+              aria-required="true"
+            >
+            <span class="form-error-msg" id="test-key-input-error">Please enter a valid test key.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="test-key-submit">
+            Continue
+          </button>
+
+          <!-- Accessible Dynamic Error Feedback Container -->
+          <div id="test-key-feedback" class="status-feedback" aria-live="polite"></div>
+        </form>
+
+        <footer class="auth-card-footer">
+          <a href="login.html" class="back-link" id="test-key-back">
+            <span aria-hidden="true">&larr;</span> Back to Login
+          </a>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
