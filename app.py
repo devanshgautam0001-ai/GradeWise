@@ -1,6 +1,6 @@
 """
 Student Performance Prediction and Analysis System
-Main Application Entry Point & Navigation Controller
+Main Application Entry Point
 """
 
 import streamlit as st
@@ -13,45 +13,36 @@ import ml_engine
 import styles
 
 from views import (
-    render_overview_view,
     render_dataset_management_view,
     render_prediction_view,
-    render_risk_analysis_view,
     render_tree_explorer_view,
     render_model_evaluation_view,
-    render_what_if_simulator_view,
-    render_recommendations_view,
-    render_history_view,
-    render_about_view,
 )
 
 # -----------------------------------------------------------------
-# 1. PAGE CONFIGURATION
+# PAGE CONFIG
 # -----------------------------------------------------------------
 st.set_page_config(
-    page_title="Student Performance Prediction and Analysis System",
+    page_title="Student Performance Prediction System",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # -----------------------------------------------------------------
-# 2. SYSTEM INITIALIZATION
+# INITIALIZATION
 # -----------------------------------------------------------------
 auth.init_db()
 styles.apply_theme()
 
-# Default user (no login required)
 if "username" not in st.session_state:
     st.session_state.username = "Student"
 
 if "current_nav" not in st.session_state:
     st.session_state.current_nav = "Dataset Management"
 
-# Initialize active dataset
 data_manager.init_dataset_state(st.session_state)
 
-# Auto-load trained model from disk if present
 if "trained_dt_model" not in st.session_state or st.session_state.trained_dt_model is None:
     st.session_state.trained_dt_model = ml_engine.load_saved_decision_tree()
 if "trained_bundle" not in st.session_state or st.session_state.trained_bundle is None:
@@ -59,10 +50,9 @@ if "trained_bundle" not in st.session_state or st.session_state.trained_bundle i
 
 
 # -----------------------------------------------------------------
-# 3. SIDEBAR NAVIGATION
+# SIDEBAR
 # -----------------------------------------------------------------
 with st.sidebar:
-    # System Brand Box
     st.markdown("""
     <div class="sidebar-brand-box">
         <div class="sidebar-brand-title">Student Performance</div>
@@ -70,7 +60,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # Model Status Indicator
+    # Model status
     bundle = st.session_state.get("trained_bundle") or st.session_state.get("trained_dt_model")
     if bundle is not None:
         acc_val = bundle.get("accuracy", 0.0) * 100
@@ -91,23 +81,17 @@ with st.sidebar:
                 <span style="width:8px; height:8px; border-radius:50%; background:#D97706; display:inline-block;"></span>
                 <span style="color:#D97706; font-weight:700; font-size:0.78rem;">Model Untrained</span>
             </div>
-            <div style="color:#64748B; font-size:0.75rem; margin-top:2px;">Configure in Dataset Management</div>
+            <div style="color:#64748B; font-size:0.75rem; margin-top:2px;">Upload dataset & train first</div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown('<div class="sidebar-nav-header">NAVIGATION</div>', unsafe_allow_html=True)
+    st.markdown("---")
 
     nav_options = [
-        "1. Overview",
-        "2. Dataset Management",
-        "3. Performance Prediction",
-        "4. Academic Risk Analysis",
-        "5. Decision Tree Explorer",
-        "6. Model Evaluation",
-        "7. What-If Simulator",
-        "8. Recommendations",
-        "9. Prediction History",
-        "10. About Project",
+        "📂 Dataset Management",
+        "🎯 Performance Prediction",
+        "🌳 Decision Tree Explorer",
+        "📊 Model Evaluation",
     ]
 
     current_idx = 0
@@ -117,64 +101,43 @@ with st.sidebar:
             break
 
     selected_nav_full = st.radio(
-        label="Select Section",
+        label="Navigation",
         options=nav_options,
         index=current_idx,
         label_visibility="collapsed"
     )
 
-    selected_nav = selected_nav_full.split(". ")[1]
+    # Extract nav name (after emoji + space)
+    selected_nav = selected_nav_full.split(" ", 1)[1]
     st.session_state.current_nav = selected_nav
 
 
 # -----------------------------------------------------------------
-# 4. PAGE ROUTER
+# PAGE ROUTER
 # -----------------------------------------------------------------
-if selected_nav == "Overview":
-    render_overview_view()
-
-elif selected_nav == "Dataset Management":
+if "Dataset Management" in selected_nav:
+    render_dataset_management_view()
+elif "Performance Prediction" in selected_nav:
+    render_prediction_view()
+elif "Decision Tree Explorer" in selected_nav:
+    render_tree_explorer_view()
+elif "Model Evaluation" in selected_nav:
+    render_model_evaluation_view()
+else:
     render_dataset_management_view()
 
-elif selected_nav == "Performance Prediction":
-    render_prediction_view()
-
-elif selected_nav == "Academic Risk Analysis":
-    render_risk_analysis_view()
-
-elif selected_nav == "Decision Tree Explorer":
-    render_tree_explorer_view()
-
-elif selected_nav == "Model Evaluation":
-    render_model_evaluation_view()
-
-elif selected_nav == "What-If Simulator":
-    render_what_if_simulator_view()
-
-elif selected_nav == "Recommendations":
-    render_recommendations_view()
-
-elif selected_nav == "Prediction History":
-    render_history_view()
-
-elif selected_nav == "About Project":
-    render_about_view()
-
-else:
-    render_overview_view()
-
 
 # -----------------------------------------------------------------
-# 5. GLOBAL FOOTER
+# FOOTER
 # -----------------------------------------------------------------
 st.markdown("""
 <div class="app-footer">
     <div>
-        <strong>Student Performance Prediction and Analysis System</strong> &bull;
-        Machine Learning Analytics Platform
+        <strong>Student Performance Prediction System</strong> &bull;
+        Decision Tree Classifier
     </div>
     <div>
-        Python &bull; Streamlit &bull; Scikit-Learn &bull; Pandas &bull; SQLite3 &bull; Matplotlib
+        Python &bull; Streamlit &bull; Scikit-Learn &bull; Pandas &bull; SQLite
     </div>
 </div>
 """, unsafe_allow_html=True)
